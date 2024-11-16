@@ -9,9 +9,14 @@ export const TaskProvider = ({ children }) => {
   });
 
   const addTask = (task) => {
+    console.log("task context", task);
     setTasks([...tasks, task]);
   };
+  const updateTask = (task) => {
+    setTasks(task);
+  }
   useEffect(() => {
+    localStorage.removeItem("tasks");
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
   useEffect(() => {
@@ -22,7 +27,7 @@ export const TaskProvider = ({ children }) => {
   }, []);
 
   return (
-    <TaskContext.Provider value={{ tasks, addTask }}>
+    <TaskContext.Provider value={{ tasks, addTask, updateTask }}>
       {children}
     </TaskContext.Provider>
   );

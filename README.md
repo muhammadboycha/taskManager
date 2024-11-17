@@ -68,3 +68,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Custom Notes about the application
+
+1. The application and functionality
+   This application is developed by using React js and Javascript.
+   It has some features like
+   1. Creating a task
+   2. Updating task priority
+   3. Updating task status
+   4. Deleting task.
+   5. Searching and sorting the tasks.
+   6. When I click the task title it will open a popup and we will see task details.
+2. The setup and launch process
+   1. I create this application using "npx create-react-app" and for staring "npm start"
+   2. If you clone this repository run "npm i" and then run "npm start". It will run the app in localhost:3000.
+3. Any assumptions made during development.
+   1. I assume user account is already created and user is already login.
+   2. I assume localstorage as database.
+   3. I use "Clear all data" button as logout and clear the data.
+   4. I use context API to store the data and save the current state into localstorage.
+   5. I create couple of branch and commit the changes and raise PR to master branch.
+4. Attach screenshot of the projcet.
+   1. I have added couple of screenshot in the "Application screenshot" directory in the root directory of the application. (file names start with "Screenshot\_").
+5. Github repository link.
+   1. https://github.com/muhammadboycha/taskManager.git
+6. For testing the application. It is hosted in Netlify. You can run and test the application in this URL.
+   1. https://muhammadboychataskmanager.netlify.app/

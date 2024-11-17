@@ -8,9 +8,10 @@ export const HomePage = () => {
     container: {
       padding: "10px",
       width: "100%",
-      maxWidth: "600px",
+      maxWidth: "700px",
       paddingTop: "50px",
-      margin:"10px"
+      margin:"10px",
+      boxSizing: "border-box"
     }
   };
   return (

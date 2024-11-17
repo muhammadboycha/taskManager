@@ -6,9 +6,15 @@ export const AddTask = () => {
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { addTask, tasks } = useContext(TaskContext);
+  const [description, setDescription] = useState("");
   
   const checkTaskAlreadyExists = (value)=>{
-    return tasks.some((item)=> item.taskTitle === value );
+    if(tasks.length > 0){
+      return tasks.some((item)=> item.taskTitle === value );
+    } else {
+      return false;
+    }
+ 
   }
 
   const Handler = () => {
@@ -17,20 +23,22 @@ export const AddTask = () => {
     if (value) {
         if(dataExist)
         {
-          setErrorMessage("Task already exists!")
+          setErrorMessage("Task is already exists!")
         } else {
             const taskData = {
-            taskTitle: value,
+            taskTitle: value.trim(),
+            description: description.trim(),
             isDelete: false,
             taskStatus: taskStatus.INPROGRESS,
             priority: priority.LOW,
           };
           addTask(taskData);
-          setValue(""); // Clear the input after adding
+          setValue(""); 
+          setDescription("");
         }
       
     } else {
-      setErrorMessage("Please enter task details.")
+      setErrorMessage("Please enter task title!")
     }
   };
 
@@ -40,13 +48,17 @@ export const AddTask = () => {
       display: "flex",
       width:"100%",
       gap:"15px",
-      margin:"15px 0px"
+      margin:"15px 0px",
+      flexDirection:"column"
     },
     inputStyle:{
       flexGrow:"1",
       padding: "10px 15px",
       borderRadius: "15px",
       border: "1px solid gray",
+      resize: "vertical",
+      minHeight: "20px",
+      maxHeight: "130px",
     },
     buttonStyle:{
       width:"150px",
@@ -59,12 +71,22 @@ export const AddTask = () => {
       cursor: "pointer",
     },
     alertMessage:{
-      color: "#E91E63"
+      color: "#E91E63",
+      margin: "0px",
     },
     taskManagerTitle:{
       fontWeight: "900",
       fontSize: "30px",
       textAlign: "center"
+    },
+    buttonWrapper:{
+      display: "flex",
+      justifyContent: "space-between",
+
+    },
+    taskTitle:{
+      margin: "0px",
+      lineHeight: "10px"
     }
   }
 
@@ -72,27 +94,35 @@ export const AddTask = () => {
     <div>
        <p style={styles.taskManagerTitle}>Task Manager</p>
       <div style={styles.inputWrapper}>
-        <input
+        <label style={styles.taskTitle}>Task Title <span style={{color:"#e91e63"}}>*</span></label>
+         <input
           style={styles.inputStyle}
           value={value}
           onFocus={()=> setErrorMessage("")}
           onChange={(e) => {
-            setValue(e.target.value.trim());
+            setValue(e.target.value);
           }}
-          placeholder="Add Task"
-        ></input>
-        <button
-          style={styles.buttonStyle}
-          onClick={() => {
-            Handler();
-          }}
-        >
-          Add
-        </button>
+          maxLength="150"
+          placeholder="Enter task title"
+        />
+         <label style={styles.taskTitle}>Task Description</label>
+        <textarea value={description} maxLength="250" onChange={(e)=>{
+          setDescription(e.target.value);
+        }} placeholder="Description" style={styles.inputStyle}></textarea>
+        <div style={styles.buttonWrapper}>
+          <p style={styles.alertMessage}>{errorMessage}</p>
+          <button
+            style={styles.buttonStyle}
+            onClick={() => {
+              Handler();
+            }}
+          >
+            Add
+          </button>
+        </div>
+        
       </div>
-     {errorMessage &&
-        <p style={styles.alertMessage}>{errorMessage}</p>
-     } 
+     
     </div>
   );
 };

@@ -61,10 +61,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .popupWrapper{
   background-color: white;
   border-radius: 15px;
   padding: 50px;
+  max-width: 500px;
+  min-width: 25%;
 }
+
+ .sortingWrapper{
+  cursor: pointer;
+ }
+ .sortingWrapperInner{
+  display: flex;
+    gap: 5px;
+    cursor: pointer;
+ }
+ .sortingWrapper:hover{
+  background-color: #ebebeb;
+  
+ }
